@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ellipses</title>
+		<style type="text/css">
+			p {
+				color: black;
+				text-align: center; }
+			legend {
+				color: white;
+				text-align: left; }
+			.fieldset-auto-width {
+         		display: inline-block;
+				text-align: center; 
+				vertical-align:text-top;}
+		</style>
+	    <script type="text/javascript" src="processing.js"></script>
+		<script type="text/javascript">
+			var bound = false;
+			var pjs;
+	
+			function bindJavascript() {
+	        	pjs = Processing.getInstanceById('ellipses');
+	        	if(pjs!=null) {
+	          		pjs.bindJavascript(this);
+	          		bound = true; }
+	        	if(!bound) setTimeout(bindJavascript, 250);
+	      	}
+	
+	      	bindJavascript();
+
+
+			function showValues(n, sw, dec, ellipseRotation, x, y) {
+	 			document.getElementById('numberOfRepeatsDisplay').value = n;
+	 			document.getElementById('strokeWeightDisplay').value = sw;
+	 			document.getElementById('distanceToCenterDisplay').value = dec;
+	 			document.getElementById('ellipseRotationDisplay').value = ellipseRotation;
+	 			document.getElementById('widthAxisDisplay').value = x;
+	 			document.getElementById('heightAxisDisplay').value = y;
+			}
+
+			function setNumberOfRepeats() {
+	            var v = document.getElementById('numberOfRepeats').value;
+	 			pjs.setNumberOfRepeats(v);
+			}
+
+			function setDistanceToCenter() {
+	            var v = document.getElementById('distanceToCenter').value;
+	 			pjs.setDistanceToCenter(v);
+			}
+
+			function setEllipseRotation() {
+	            var v = document.getElementById('ellipseRotation').value;
+	 			pjs.setEllipseRotation(v);
+			}
+
+			function setStrokeWeight() {
+	            var v = document.getElementById('strokeWeight').value;
+	 			pjs.setStrokeWeight(v);
+			}
+
+			function setWidthAxis() {
+	            var v = document.getElementById('widthAxis').value;
+	 			pjs.setEllipseWidth(v);
+			}
+
+			function setHeightAxis() {
+	            var v = document.getElementById('heightAxis').value;
+	 			pjs.setEllipseHeight(v);
+			}
+        </script>
+	</head>
+	<body style="background-color: #FFFFFF">
+		<p>Stroke weight:
+					<input
+					type="range"  
+					id="strokeWeight"   
+					onchange="setStrokeWeight()"
+					value="5" 
+					min="2" max="30"
+					style="width: 100px"
+			</input><output type="text" id="strokeWeightDisplay" value="">5</output>
+		</p>
+		<p>Number of repeats:
+					<input
+					type="range"  
+					id="numberOfRepeats"   
+					onchange="setNumberOfRepeats()"
+					value="12" 
+					min="3" max="30"
+					style="width: 100px"
+			</input><output type="text" id="numberOfRepeatsDisplay" value="">12</output>
+		</p>
+		<p>Distance from center of drawing to center of ellipse:
+					<input
+					type="range"  
+					id="distanceToCenter"   
+					onchange="setDistanceToCenter()"
+					value="0.15" 
+					min="0" max="1" step = "0.01"
+					style="width: 100px"
+			</input><output type="text" id="distanceToCenterDisplay" value="">0.15</output>
+		</p>
+		<p>Ellipse rotation (degrees):
+					<input
+					type="range"  
+					id="ellipseRotation"   
+					onchange="setEllipseRotation()"
+					value="45" 
+					min="0" max="90" step = "1"
+					style="width: 100px"
+			</input><output type="text" id="ellipseRotationDisplay" value="">45</output>
+		</p>
+		<p>Axis 1 length:
+					<input
+					type="range"  
+					id="widthAxis"   
+					onchange="setWidthAxis()"
+					value="0.5" 
+					min="0.1" max="1" step = "0.01"
+					style="width: 100px"
+			</input><output type="text" id="widthAxisDisplay" value="">0.5</output>
+		</p>
+		<p>Axis 2 length:
+					<input
+					type="range"  
+					id="heightAxis"   
+					onchange="setHeightAxis()"
+					value="0.35" 
+					size="0.35" 
+					min="0.1" max="1" step = "0.01"
+					style="width: 100px"
+			</input><output type="text" id="heightAxisDisplay" value="">0.35</output>
+		</p>
+		<div style="text-align: center;">
+			<canvas id="ellipses" data-processing-sources="ellipses.pde"></canvas>
+		</div>
+	</body>
+</html>
