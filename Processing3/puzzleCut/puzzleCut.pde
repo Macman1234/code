@@ -1,10 +1,10 @@
 import processing.pdf.*;
 float NUDGE = 5;
-int numRows = 6;
+int numRows = 25;
 boolean needsRedraw = true;
 
 void setup() {
-  size(600, 600, PDF, "puzzleCut"+numRows+'x'+numRows+".pdf");
+  size(2400, 2400, PDF, "puzzleCut"+numRows+'x'+numRows+".pdf");
 }
 
 void draw() {
