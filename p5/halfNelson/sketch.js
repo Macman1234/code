@@ -9,11 +9,11 @@ var numPointsSlider, numLayersSlider, innerRadiusSlider, penSlider, slantSlider;
 function setup() {
   createCanvas(800, 800);
   var sliderInset = 90;
-  numPointsSlider = makeSlider("num points", 3, 50, 6, sliderInset, 20, 1);
-  numLayersSlider = makeSlider("depth", 1, 50, 3, sliderInset, 50, 1);
-  innerRadiusSlider = makeSlider("inner radius", 0.5, 0.95, 0.8, sliderInset, 80, 0.01);
+  numPointsSlider = makeSlider("num points", 3, 50, 12, sliderInset, 20, 1);
+  numLayersSlider = makeSlider("depth", 1, 50, 6, sliderInset, 50, 1);
+  innerRadiusSlider = makeSlider("inner radius", 0.5, 0.95, 0.66, sliderInset, 80, 0.01);
   penSlider = makeSlider("pen", 0.1, 1, 0.5, sliderInset, 110, 0.01);
-  slantSlider = makeSlider("slant", 0.5, 3, 0.5, sliderInset, 140, 0.01);
+  slantSlider = makeSlider("slant", 0.5, 3, 2.75, sliderInset, 140, 0.01);
 }
 
 function keyTyped() {
