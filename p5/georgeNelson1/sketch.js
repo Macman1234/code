@@ -4,7 +4,8 @@ var needsRedraw = true;
 var numPoints = 8;
 var numLayers = 12;
 var innerRadiusAsFractionOfOuter = 0.7;
-var numPointsSlider, numLayersSlider, innerRadiusSlider, penSlider, slantSlider, curvatureSlider;
+var numPointsSlider, numLayersSlider, innerRadiusSlider;
+var penSlider, slantSlider, curvatureSlider, roundedEndsCheckbox;
 
 function setup() {
   createCanvas(800, 800);
@@ -14,6 +15,7 @@ function setup() {
   innerRadiusSlider = makeSlider("inner radius", 0.5, 0.95, 0.8, sliderInset, 80, 0.01);
   penSlider = makeSlider("pen", 0.1, 1, 0.5, sliderInset, 110, 0.01);
   curvatureSlider = makeSlider("curvature", -2, 2, 0.3, sliderInset, 140, 0.01);
+  roundedEndsCheckbox = makeCheckbox("round ends", false, sliderInset, 170);
 }
 
 function keyTyped() {
@@ -54,6 +56,7 @@ function drawImageOnly() {
   rotate(PI / numPointsSlider.value());
 
   background(255);
+  strokeCap(roundedEndsCheckbox.checked() ? ROUND : SQUARE);
   var radius = width * 0.4;
   for (var layerCtr = 0; layerCtr < numLayersSlider.value(); ++layerCtr) {
     drawLayer(radius);
