@@ -5,8 +5,11 @@ float backOfFenceToEdge = 3 * DPI;
 float backMaxFenceHeight = 6 * DPI;
 float backMinFenceHeight = 2.5 * DPI;
 float supportInset = 4 * DPI;
-float fenceThickness = 0.375 * DPI;
-float baseThickness = 0.5 * DPI;
+float fenceThickness = (1.0 + 13.0/32) / 4.0  * DPI;//using 9mm (~3/8")
+float baseThickness = (1.0 + 29.0/32) / 4.0 * DPI;//using 12mm (~1/2")
+float MITER_SLOT_OFFSET = 4.25 * DPI;
+int NUM_MITER_SCREWS = 6;
+float MITER_SCREW_DIAMETER = 0.06 * DPI;
 float topInset = 8 * DPI;
 float bottomWidth = 35 * DPI;
 float topWidth = bottomWidth - 2 * topInset;
@@ -71,10 +74,15 @@ void drawSled() {
   drawSupportMortices(supportInset, depth, bottomWidth - supportInset - fenceThickness, backOfFenceToEdge);
 
   //draw miter slot guidelines
-  float miterEdge = bottomWidth * 0.5 + 6 * DPI;
+  float miterEdge = bottomWidth * 0.5 + MITER_SLOT_OFFSET;
   float miterWidth = 0.75 * DPI;
   line(miterEdge, 0, miterEdge, depth);
   line(miterEdge + miterWidth, 0, miterEdge + miterWidth, depth);
+  float y = depth * 0.5 /NUM_MITER_SCREWS;
+for(int screwCtr = 0; screwCtr < NUM_MITER_SCREWS; ++screwCtr) {
+  ellipse(miterEdge + miterWidth * 0.5, y, MITER_SCREW_DIAMETER, MITER_SCREW_DIAMETER);
+  y += depth / NUM_MITER_SCREWS;
+}
 
   //Draw fences
   translate(0, depth + baseThickness + NUDGE);
