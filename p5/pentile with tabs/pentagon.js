@@ -49,8 +49,8 @@ var Pentagon = class Pentagon {
     beginShape();
     vertex(0, 0);
     vertex(segmentLength - miniSideLength, 0);
-    var distToVertex = DIST_TO_VERTEX / SIDE_LENGTH * miniSideLength ;
-    var tabCenter = new Vector2D(segmentLength - miniSideLength * 0.5, ALTITUDE / SIDE_LENGTH * miniSideLength  );
+    var distToVertex = DIST_TO_VERTEX / SIDE_LENGTH * miniSideLength;
+    var tabCenter = new Vector2D(segmentLength - miniSideLength * 0.5, ALTITUDE / SIDE_LENGTH * miniSideLength);
     var angle = HALF_PI / NUMBER_OF_SIDES;
     for (var sideCtr = 0; sideCtr < NUMBER_OF_SIDES - 1; ++sideCtr) {
       vertex(tabCenter.x - distToVertex * cos(angle), tabCenter.y + distToVertex * sin(angle));
@@ -94,17 +94,19 @@ var Pentagon = class Pentagon {
     pop();
 
     //draw handles
-    var hasFocus = this.distanceToMouse(this.x, this.y) < ALTITUDE * screenSideLength() * 1.1;
-    if (hasFocus) {
-      strokeWeight(2)
-      stroke(255, 0, 0);
-      var diam = this.edgeRingDiameter();
-      for (var sideCtr = 0; sideCtr < NUMBER_OF_SIDES; ++sideCtr) {
-        var midPoint = this.midPoints[sideCtr];
-        ellipse(toScreenX(midPoint.x), toScreenY(midPoint.y), diam, diam);
+    if (!drawingForSave) {
+      var hasFocus = this.distanceToMouse(this.x, this.y) < ALTITUDE * screenSideLength() * 1.1;
+      if (hasFocus) {
+        strokeWeight(2)
+        stroke(255, 0, 0);
+        var diam = this.edgeRingDiameter();
+        for (var sideCtr = 0; sideCtr < NUMBER_OF_SIDES; ++sideCtr) {
+          var midPoint = this.midPoints[sideCtr];
+          ellipse(toScreenX(midPoint.x), toScreenY(midPoint.y), diam, diam);
+        }
       }
+      pop();
     }
-    pop();
   }
 
 

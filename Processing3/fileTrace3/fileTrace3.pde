@@ -1,7 +1,7 @@
 import processing.pdf.*;
 
 //User inputs
-String INPUT_FILE_NAME = "pentileBoxTop";
+String INPUT_FILE_NAME = "pentilesTabbedBoxTop";
 String FILE_EXTENSION = "png";
 int FATTEN_BY_PIXELS = 0;//spreads out the edge for effect, or to allow etching/cutting the original on an enlarged background
 int WIDTH_IN_INCHES =  6;
@@ -17,7 +17,7 @@ int BLACK = color(0);
 EdgeCalculator edgeCalculator;
 
 void setup() {
-  size(2601,2584);
+  size(4000,4000);
   initializeNeighborPixelArray();
   edgeCalculator = new EdgeCalculator(INPUT_FILE_NAME + '.' + FILE_EXTENSION);
   exit();//the window uses too much mem, so force it to close

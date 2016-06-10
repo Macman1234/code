@@ -12,6 +12,7 @@ which is then scaleable.
 
 var pentagons = [];
 var needsRedraw = true;
+var drawingForSave = false;
 var NUMBER_OF_SIDES = 5;
 var SIDE_LENGTH, ALTITUDE, DIST_TO_VERTEX;
 var SCREEN_WIDTH = 800;
@@ -66,11 +67,13 @@ function keyTyped() {
     pentagons = pentagons.slice(0, pentagons.length - 1);
     needsRedraw = true;
   } else if (key == 's') {
+    drawingForSave = true;
     createCanvas(2000, 2000);
     drawImageOnly();
     var filename = 'pentile' + Math.round(millis()) + '.png';
     save(filename);
     createCanvas(SCREEN_WIDTH, SCREEN_WIDTH);
+    drawingForSave = false;
     needsRedraw = true;
   }
 }
