@@ -1,12 +1,12 @@
 import processing.pdf.*;
 
 int n1 = 1;
-int n2 = 1;
+int n2 = 2;
 float gearSpeed = 0.01;
 float axleSeparation;
-int numIterationsPerGear = 100;
+int numIterationsPerGear = 1000;
 
-float amplitudeMultipler = 0.2;
+float amplitudeMultipler = 0.15;
 
 PGraphics pdf;
 int numIterationsPerGearPDF = 1000;
@@ -25,7 +25,8 @@ void setup() {
 float radius(float theta) {
   //return height * 0.1 * (1 + 0.3 * (cos(theta * n1) + cos(theta * n1 * 2)));
   //return height * 0.2 * (1 + amplitudeMultipler* (cos(theta * n1) + 2 * cos(theta * n1 * 2)));
-  return height * 0.2 * (1 + amplitudeMultipler * (cos(theta * n1) +  sin(theta * n1 * 2 )+   cos(theta * n1 * 3 )+   sin(theta * n1 * 5 )));
+  //return height * 0.2 * (1 + amplitudeMultipler * (cos(theta * n1) +  sin(theta * n1 * 2 )+   cos(theta * n1 * 3 )+   sin(theta * n1 * 5 )));
+  return height * 0.2 * (1 + amplitudeMultipler * (cos(theta * n1) +  cos(theta * n1 * 3 )+  cos(theta * n1 * 5 )+  0.05 * cos(theta * n1 * 120 )));
   //return height * 0.1 * (1 + 0.8 * cos(theta * n1) ); 
   //return height * 0.1 * (1 + 0.7 * sin(theta * n1) );
 }
