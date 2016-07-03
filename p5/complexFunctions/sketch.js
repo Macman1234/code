@@ -1,28 +1,34 @@
-int imageSize;
-float verticalScale = 1;
-float range = PI;
-float aspectRatio = 1;//1080.0 / 1920;
+var needsRedraw = true;
 
-Complex ONE = new Complex(1, 0);
-Complex I = new Complex(0, 1);
+var range = Math.PI;
+var verticalScale = 1;
 
-void setup() {
-  //size(imageSize, (int) (imageSize /  aspectRatio));
-  size(512, 512);
-  imageSize = width;
-  float xMin = -range;
-  float xMax = range;
-  float yMin = -range * verticalScale;
-  float yMax = range * verticalScale;
 
-  for (int i = 0; i < width; ++i) {
+function setup() {
+ createCanvas(512, 512);
+   
+}
+
+function draw() {
+    if (!needsRedraw) {
+    return;
+  }
+  needsRedraw = false;
+  clear();
+  
+  var xMin = -range;
+  var xMax = range;
+  var yMin = -range * verticalScale;
+  var yMax = range * verticalScale;
+
+ for (var i = 0; i < width; ++i) {
     //if (i %10 == 0) {
     //  println("line "+i +" of "+width);
     //}
-    float x = xMin + i * (xMax - xMin) / width;
-    for (int j = 0; j < height; ++j) {
-      float y = yMax - j * (yMax - yMin) / height;
-      Complex z = new Complex(x, y);
+    var x = xMin + i * (xMax - xMin) / width;
+    for (var j = 0; j < height; ++j) {
+      var y = yMax - j * (yMax - yMin) / height;
+      var z =  new Complex(x, y);
       //      stroke(f(z).grayscaleByAngle());
       //   stroke(f(z.swirl().swirl()).convertToColor());//#17
       stroke(f(z).convertToColor());
@@ -32,9 +38,10 @@ void setup() {
   }
 
   save("complexFunctions.jpg");
+
 }
 
-Complex f(Complex z) {
+function f(z) {
   // Up to image 8, used grayscaleByAngle2, which had a bug
 
   //return z.sinh().cosh();

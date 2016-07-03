@@ -22,7 +22,7 @@ function keyTyped() {
   if (key == 's') {
     createCanvas(2000, 2000);
     drawImageOnly();
-    var filename = 'tunnel' + Math.round(millis()) + '.png';
+    var filename = 'gn' + Math.round(millis()) + '.png';
     save(filename);
     createCanvas(800, 800);
     needsRedraw = true;

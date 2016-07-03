@@ -21,3 +21,7 @@ application.macosx
 *.webarchive
 
 *.png
+
+Processing3/connectTheDotsLC/pdf/connectDots_stretch0.5_pen0.025_outer2_inner12_radius1.0_noRing.pdf
+
+*.pdf
