@@ -16,6 +16,16 @@ class EdgeCalculator {
     createEdgeOnlyPDF(INPUT_FILE_NAME+"_traced.pdf", 72 * WIDTH_IN_INCHES );
   }
 
+  void filterToBlackAndWhiteOnly() {
+    img.loadPixels();
+    int i = 0;
+    for (int pixel : img.pixels) {
+      float gray = (red(pixel) + green(pixel) + blue(pixel)) / 3;
+      img.pixels[i++] = gray > 240 ? WHITE : BLACK; //<>//
+    }
+    img.updatePixels();
+  }
+
   void fatten(int depth) {
     if (depth == 0) {
       return;
@@ -39,16 +49,6 @@ class EdgeCalculator {
     println("done fatten");
     loadPixels();
     arrayCopy(pixels, img.pixels);
-    img.updatePixels();
-  }
-
-  void filterToBlackAndWhiteOnly() {
-    img.loadPixels();
-    int i = 0;
-    for (int pixel : img.pixels) {
-      float gray = (red(pixel) + green(pixel) + blue(pixel)) / 3;
-      img.pixels[i++] = gray > 200 ? WHITE : BLACK;
-    }
     img.updatePixels();
   }
 

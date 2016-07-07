@@ -140,26 +140,26 @@ void drawSupportMortices(float xLeft, float y, float xRight, float span) {
 
 void drawTenons(float span) {
   float numMortises = numberOfMortises(span);
-  float distanceBetweenMortises = distanceBetweenMortises(span);
-
+  float distanceBetweenTenons = distanceBetweenMortises(span);
+  
   //...tenons
   beginShape();
   vertex(0, 0);
   float x = 0;
-  for (int mortCtr = 0; mortCtr < numMortises; ++mortCtr) {
-    vertex(x + distanceBetweenMortises, 0);
-    vertex(x + distanceBetweenMortises, -baseThickness);
-    vertex(x + distanceBetweenMortises + fenceThickness, -baseThickness);
-    vertex(x + distanceBetweenMortises + fenceThickness, 0);
-    x += distanceBetweenMortises + fenceThickness;
+  for (int tenonCtr = 0; tenonCtr < numMortises; ++tenonCtr) {
+    vertex(x + distanceBetweenTenons, 0);
+    vertex(x + distanceBetweenTenons, -baseThickness);
+    vertex(x + distanceBetweenTenons + fenceThickness, -baseThickness);
+    vertex(x + distanceBetweenTenons + fenceThickness, 0);
+    x += distanceBetweenTenons + fenceThickness;
   }
-  vertex(x + distanceBetweenMortises, 0);
+  vertex(x + distanceBetweenTenons, 0);
   endShape();
 }
 
 void drawFence(float fenceWidth, float outerControlPointMultipler, float innerControlPointMultiplier) {
   drawTenons(fenceWidth);
-  drawSupportMortices(supportInset, backMinFenceHeight, fenceWidth - supportInset, backMinFenceHeight);
+  drawSupportMortices(supportInset, backMinFenceHeight, fenceWidth - supportInset - fenceThickness, backMinFenceHeight);
 
   //curvy top edge
   arc(cornerRadius, 0, cornerDiam, backMinFenceHeight * 2, HALF_PI, PI);
