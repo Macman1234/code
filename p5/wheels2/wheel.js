@@ -17,7 +17,7 @@ var Wheel = class Wheel {
     var xNew = xCenter + this.x(angle);
     var yNew = yCenter + this.y(angle);
     //now we have xNew and yNew, but no twisting yet
-    var twist = dist(0,0,xNew, yNew) * twistSlider.value() * 0.0001;
+    var twist = dist(0,0,xNew, yNew) * twistSlider.value() / width * 0.2;
     var xTwisted = xNew * cos(twist) - yNew * sin(twist);
     var yTwisted = xNew * sin(twist) + yNew * cos(twist);
     
@@ -27,7 +27,7 @@ var Wheel = class Wheel {
         if (fixedPenWidth) {
           strokeWeight(maxPenWidth);
         } else {
-          strokeWeight(dist(0,0,xTwisted, yTwisted) / width / WIDTH_MULTIPLIER * maxPenWidth);
+          strokeWeight(dist(0,0,xTwisted, yTwisted) * 0.001 / WIDTH_MULTIPLIER * maxPenWidth);
         }
         line(this.xPrevious, this.yPrevious, xTwisted, yTwisted);
       }

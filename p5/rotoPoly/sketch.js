@@ -6,6 +6,7 @@ var numLayers = 12;
 var innerRadiusAsFractionOfOuter = 0.7;
 var numVerticesSlider, numPolysSlider, polySizeSlider;
 var polyAngleSlider, sizeSlider, polyInsetSlider, penSlider;
+var numLayersSlider;
 var outerFrameCheckbox, outerFrameSlider, innerFrameCheckbox, innerFrameSlider;
 
 function setup() {
@@ -22,6 +23,7 @@ function setup() {
   outerFrameSlider = makeSlider("frame1 size", 0.1, 1, 0.9, sliderInset, 260, 0.001);
   innerFrameCheckbox = makeCheckbox("show frame2", false, sliderInset, 290);
   innerFrameSlider = makeSlider("frame2 size", 0.1, 1, 0.8, sliderInset, 320, 0.001);
+  numLayersSlider = makeSlider("# layers", 1, 10, 2, sliderInset, 350, 1);
 }
 
 function keyTyped() {
@@ -69,6 +71,7 @@ function draw() {
   text(penSlider.value(), valueTextOffset, 213);
   text(outerFrameSlider.value(), valueTextOffset, 273);
   text(innerFrameSlider.value(), valueTextOffset, 333);
+  text(numLayersSlider.value(), valueTextOffset, 363);
   textSize(12);
   var msg = "Type 's' to save, 1/2 to tweak frame1, 3/4 to tweak frame2."
   text(msg, (width - textWidth(msg)) / 2, 20);
